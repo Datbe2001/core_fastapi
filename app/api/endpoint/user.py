@@ -16,24 +16,23 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.get("/user/list")
-async def list_users(skip=0,
-                     limit=10,
-                     system_role: UserSystemRole = None,
-                     email: str = None,
-                     username: str = None,
-                     user: User = Depends(oauth2.admin),
-                     db: Session = Depends(get_db)):
-    user_service = UserService(db=db)
-    user_response = await user_service.list_users(system_role=system_role, email=email,
-                                                  username=username, skip=skip,
-                                                  limit=limit)
-    return make_response_object(user_response)
+# @router.get("/user/list")
+# async def list_users(skip=0,
+#                      limit=10,
+#                      email: str = None,
+#                      username: str = None,
+#                     user: User = Depends(oauth2.admin),
+#                      db: Session = Depends(get_db)):
+#     user_service = UserService(db=db)
+#     user_response = await user_service.list_users(system_role=system_role, email=email,
+#                                                   username=username, skip=skip,
+#                                                   limit=limit)
+#     return make_response_object(user_response)
 
 
 @router.get("/user/{user_id}/get_user")
 async def get_user_by_id(user_id: str,
-                         user: User = Depends(oauth2.get_current_user),
+                         #                         user: User = Depends(oauth2.get_current_user),
                          db: Session = Depends(get_db)):
     user_service = UserService(db=db)
     user_response = await user_service.get_user_by_id(user_id=user_id)
@@ -46,4 +45,3 @@ async def read_me(user: User = Depends(oauth2.get_current_user),
     user_service = UserService(db=db)
     user_response = await user_service.get_user_by_id(user_id=user.id)
     return make_response_object(user_response)
-

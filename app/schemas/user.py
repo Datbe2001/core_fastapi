@@ -19,7 +19,7 @@ class UserBase(BaseModel):
     address_real: Optional[str] = None
     is_active: Union[bool, None] = None
     system_role: Optional[str] = None
-    account_balance: Optional[str] = None
+    account_balance: Optional[str] = "11"
 
     class Config:
         orm_mode = True
