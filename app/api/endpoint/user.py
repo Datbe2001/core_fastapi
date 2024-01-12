@@ -16,18 +16,19 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-# @router.get("/user/list")
-# async def list_users(skip=0,
-#                      limit=10,
-#                      email: str = None,
-#                      username: str = None,
-#                     user: User = Depends(oauth2.admin),
-#                      db: Session = Depends(get_db)):
-#     user_service = UserService(db=db)
-#     user_response = await user_service.list_users(system_role=system_role, email=email,
-#                                                   username=username, skip=skip,
-#                                                   limit=limit)
-#     return make_response_object(user_response)
+@router.get("/user/list")
+async def list_users(system_role: UserSystemRole,
+                     skip=0,
+                     limit=10,
+                     email: str = None,
+                     username: str = None,
+                    # user: User = Depends(oauth2.admin),
+                     db: Session = Depends(get_db)):
+    user_service = UserService(db=db)
+    user_response = await user_service.list_users(system_role=system_role, email=email,
+                                                  username=username, skip=skip,
+                                                  limit=limit)
+    return make_response_object(user_response)
 
 
 @router.get("/user/{user_id}/get_user")

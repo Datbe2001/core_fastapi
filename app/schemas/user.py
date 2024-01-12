@@ -11,15 +11,8 @@ class UserBase(BaseModel):
     id: Optional[str] = None
     username: Optional[str] = None
     email: Optional[str] = None
-    avatar: Optional[str] = None
     full_name: Optional[str] = None
-    birthday: Optional[date] = None
     phone: Optional[str] = None
-    address_wallet: Optional[str] = None
-    address_real: Optional[str] = None
-    is_active: Union[bool, None] = None
-    system_role: Optional[str] = None
-    account_balance: Optional[str] = "11"
 
     class Config:
         orm_mode = True
@@ -32,9 +25,7 @@ class UserCreateParams(BaseModel):
 
 class UserUpdateParams(BaseModel):
     username: Optional[str] = None
-    avatar: Optional[str] = None
     full_name: Optional[str] = None
-    birthday: Optional[date] = None
     phone: Optional[str] = None
 
 
@@ -44,18 +35,11 @@ class UserCreate(BaseModel):
     username: str
 
 
-class SurveyCreateParam(BaseModel):
-    survey_data: dict
-
-
 class UserUpdate(BaseModel):
     id: Optional[str] = None
     username: Optional[str] = None
-    avatar: Optional[str] = None
     full_name: Optional[str] = None
-    birthday: Optional[date] = None
     phone: Optional[str] = None
-    is_activate: Optional[bool] = True
 
 
 class LoginUser(BaseModel):
@@ -65,11 +49,9 @@ class LoginUser(BaseModel):
 
 class UserInfo(BaseModel):
     id: str
-    avatar: Optional[str] = None
     username: Optional[str] = None
     email: Optional[str] = None
     phone: Optional[str] = None
-    system_role: Optional[str] = None
 
     class Config:
         allow_population_by_field_name = True

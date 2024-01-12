@@ -20,5 +20,7 @@ class UserService:
     async def get_user_by_id(self, user_id: str):
         current_user = crud_user.get_user_by_id(db=self.db, user_id=user_id)
         if not current_user:
-            raise "loi"
+            return "loi"
         return UserResponse.from_orm(current_user)
+
+
